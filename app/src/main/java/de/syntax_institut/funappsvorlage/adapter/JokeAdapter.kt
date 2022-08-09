@@ -7,12 +7,13 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import de.syntax_institut.funappsvorlage.R
+import de.syntax_institut.funappsvorlage.data.datamodels.Joke
 
 /**
  * Diese Klasse organisiert mithilfe der ViewHolder Klasse das Recycling
  */
 class JokeAdapter(
-    private val dataset: List<Any>
+    private val dataset: List<Joke>
 ) : RecyclerView.Adapter<JokeAdapter.ItemViewHolder>() {
 
     /**
@@ -43,9 +44,12 @@ class JokeAdapter(
 
         // Hole den Joke aus dem dataset
         // TODO
+        val joke = dataset[position]
 
         // weise den TextViews den Text der Vorlage und der Antwort aus dem Joke zu
         // TODO
+        holder.tvSetup.text = joke.setup
+        holder.tvDelivery.text = joke.delivery
 
         // setze den Click Listener auf btnShowDelivery
         holder.btnShowDelivery.setOnClickListener {

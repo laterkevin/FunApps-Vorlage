@@ -29,6 +29,7 @@ class JokesFragment : Fragment() {
 
         // Hier wird der Informationsabruf gestartet
         // TODO
+        viewModel.loadData()
 
         binding = FragmentJokesBinding.inflate(inflater, container, false)
         return binding.root
@@ -43,6 +44,9 @@ class JokesFragment : Fragment() {
 
         // Bei einem Klick auf btnRefresh sollen die Informationen erneut abgerufen werden
         // TODO
+        binding.btnRefresh.setOnClickListener {
+            viewModel.loadData()
+        }
 
         // Verbesserte Performance bei fixer Listengröße
         binding.rvJokes.setHasFixedSize(true)
@@ -50,5 +54,8 @@ class JokesFragment : Fragment() {
         // Die Variable jokes wird beobachtet und bei einer Änderung wird der Adapter der
         // Recyclerview neu gesetzt
         // TODO
+        viewModel.joke.observe(viewLifecycleOwner) {
+            binding.rvJokes.adapter = JokeAdapter(it)
+        }
     }
 }
